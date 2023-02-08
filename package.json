@@ -1,0 +1,21 @@
+{
+  "name": "build-astro",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "sanitize.css": "^13.0.0"
+  },
+  "devDependencies": {
+    "@csstools/postcss-global-data": "^1.0.0",
+    "astro": "^2.0.8",
+    "astro-bundle": "^0.1.1",
+    "postcss-preset-env": "^8.0.1"
+  }
+}

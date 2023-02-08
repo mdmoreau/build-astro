@@ -1,0 +1,23 @@
+---
+import 'sanitize.css';
+import '@styles/base.css';
+import '@styles/utility.css';
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title} - build</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<script>
+	import '@scripts/expand';
+</script>
