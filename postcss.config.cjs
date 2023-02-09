@@ -5,7 +5,7 @@ module.exports = {
   plugins: [
     globalData({
       files: [
-        './src/styles/data.css',
+        'src/styles/data.css',
       ],
     }),
     presetEnv({
