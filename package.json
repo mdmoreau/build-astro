@@ -13,8 +13,8 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
-    "@csstools/postcss-global-data": "^1.0.0",
-    "astro": "^2.0.8",
+    "@csstools/postcss-global-data": "^1.0.3",
+    "astro": "^2.0.16",
     "astro-bundle": "^0.1.1",
     "postcss-preset-env": "^8.0.1"
   }
