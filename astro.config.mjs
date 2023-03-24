@@ -1,12 +1,17 @@
 import { defineConfig } from 'astro/config';
-import bundle from 'astro-bundle';
 
 // https://astro.build/config
 export default defineConfig({
-  build: {
-    format: 'file',
-  },
-  integrations: [
-    bundle(),
-  ],
+  vite: {
+    build: {
+      assetsInlineLimit: 0,
+      cssCodeSplit: false,
+      rollupOptions: {
+        output: {
+          entryFileNames: 'assets/script.js',
+          assetFileNames: 'assets/[name][extname]',
+        }
+      }
+    }
+  }
 });
