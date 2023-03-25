@@ -1,9 +1,7 @@
 ---
-import 'sanitize.css';
-import '@styles/base.css';
-import '@styles/utility.css';
+import '@styles/global.css';
 
-export interface Props {
+interface Props {
   title: string;
 }
 
@@ -25,5 +23,5 @@ const { title } = Astro.props;
 </html>
 
 <script>
-  import '@scripts/expand';
+  import '@scripts/global';
 </script>

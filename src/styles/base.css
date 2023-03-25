@@ -1,10 +1,18 @@
+@import "sanitize.css";
+
+:root {
+  cursor: auto;
+}
+
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+
 iframe,
 img,
-input,
-video,
-select,
 svg,
-textarea {
+video {
+  display: block;
   max-width: 100%;
   height: auto;
 }
@@ -14,17 +22,26 @@ video {
   aspect-ratio: 16 / 9;
 }
 
+blockquote,
+figure {
+  margin-inline: 0;
+}
+
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 button,
 input,
 select,
 textarea {
-  padding: 0.25em 0.375em;
-  border: 1px solid;
+  max-width: 100%;
   border-radius: 0;
-  background-color: field;
   color: inherit;
   font: inherit;
-  letter-spacing: inherit;
   text-overflow: ellipsis;
 }
 
@@ -35,6 +52,6 @@ button,
   cursor: pointer;
 }
 
-:focus:not(:focus-visible) {
-  outline: 0;
+[type="search"] {
+  appearance: none;
 }
