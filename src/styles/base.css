@@ -4,8 +4,10 @@
   cursor: auto;
 }
 
-:focus:not(:focus-visible) {
-  outline: 0;
+:focus {
+  &:not(:focus-visible) {
+    outline: 0;
+  }
 }
 
 iframe,
