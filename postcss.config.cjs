@@ -5,12 +5,14 @@ module.exports = {
   plugins: [
     globalData({
       files: [
-        'src/styles/inject.css',
+        'src/styles/props.css',
       ],
     }),
     presetEnv({
+      stage: false,
       features: {
-        'custom-selectors': true,
+        'custom-media-queries': true,
+        'media-query-ranges': true,
         'nesting-rules': true,
       },
     }),
