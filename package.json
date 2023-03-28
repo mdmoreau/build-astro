@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "dom-focus-lock": "^1.1.0",
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {

@@ -1,6 +1,9 @@
+import focusLock from 'dom-focus-lock';
+
+const root = document.documentElement;
 const targets = document.querySelectorAll('[data-expand]');
 
-const reflow = () => document.documentElement.scrollTop;
+const reflow = () => root.scrollTop;
 
 const expanded = (target) => target.getAttribute('aria-expanded') === 'true';
 
@@ -9,10 +12,8 @@ const update = (target) => {
 
   if (next.hasAttribute('data-expand-height')) {
     const current = next.offsetHeight;
-    let height;
-
     next.style.setProperty('--height', 'auto');
-    height = next.offsetHeight;
+    const height = next.offsetHeight;
     next.style.setProperty('--height', `${current}px`);
     reflow();
 
@@ -21,6 +22,25 @@ const update = (target) => {
     } else {
       next.style.setProperty('--height', `${height}px`);
     }
+  }
+};
+
+const modal = (target) => {
+  const toggle = target.getAttribute('data-expand-toggle');
+  const next = target.nextElementSibling;
+
+  if (toggle) {
+    if (expanded(target)) {
+      root.setAttribute(toggle, '');
+    } else {
+      root.removeAttribute(toggle);
+    }
+  }
+
+  if (expanded(target)) {
+    focusLock.on(next);
+  } else {
+    focusLock.off(next);
   }
 };
 
@@ -33,16 +53,16 @@ for (const target of targets) {
     target.setAttribute('aria-expanded', false);
   }
 
-  if (type === 'group') {
-    const root = target.closest('[data-expand-group]');
-    const items = root.querySelectorAll('[data-expand="group"]');
-    const group = [...items].filter((item) => item.closest('[data-expand-group]') === root);
+  if (type === 'tab') {
+    const container = target.closest('[data-expand-tabs]');
+    let tabs = container.querySelectorAll('[data-expand="tab"]');
+    tabs = [...tabs].filter((tab) => tab.closest('[data-expand-tabs]') === container);
 
     target.addEventListener('click', () => {
-      for (const item of group) {
-        if ((expanded(item) && item !== target) || (!expanded(item) && item === target)) {
-          update(item);
-          item.setAttribute('aria-expanded', item === target);
+      for (const tab of tabs) {
+        if ((expanded(tab) && tab !== target) || (!expanded(tab) && tab === target)) {
+          update(tab);
+          tab.setAttribute('aria-expanded', tab === target);
         }
       }
     });
@@ -50,21 +70,29 @@ for (const target of targets) {
     target.addEventListener('click', () => {
       update(target);
       target.setAttribute('aria-expanded', !expanded(target));
+
+      if (type === 'modal') {
+        modal(target);
+      }
     });
   }
 
-  if (type === 'popup') {
+  if (type === 'modal') {
+    const close = () => {
+      update(target);
+      target.setAttribute('aria-expanded', false);
+      modal(target);
+    };
+
     document.addEventListener('click', (e) => {
       if (expanded(target) && !target.contains(e.target) && !next.contains(e.target)) {
-        update(target);
-        target.setAttribute('aria-expanded', false);
+        close();
       }
     });
 
     document.addEventListener('keydown', (e) => {
       if (expanded(target) && e.key === 'Escape') {
-        update(target);
-        target.setAttribute('aria-expanded', false);
+        close();
       }
     });
   }
