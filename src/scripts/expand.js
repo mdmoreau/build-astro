@@ -8,9 +8,22 @@ const reflow = () => root.scrollTop;
 const expanded = (target) => target.getAttribute('aria-expanded') === 'true';
 
 const update = (target) => {
+  const type = target.getAttribute('data-expand');
+  const toggle = target.getAttribute('data-expand-toggle');
   const next = target.nextElementSibling;
+  const height = next.hasAttribute('data-expand-height');
 
-  if (next.hasAttribute('data-expand-height')) {
+  if (type === 'modal') {
+    if (expanded(target)) {
+      focusLock.off(next);
+      toggle && root.removeAttribute(toggle);
+    } else {
+      focusLock.on(next);
+      toggle && root.setAttribute(toggle, '');
+    }
+  }
+
+  if (height) {
     const current = next.offsetHeight;
     next.style.setProperty('--height', 'auto');
     const height = next.offsetHeight;
@@ -22,19 +35,6 @@ const update = (target) => {
     } else {
       next.style.setProperty('--height', `${height}px`);
     }
-  }
-};
-
-const modal = (target) => {
-  const toggle = target.getAttribute('data-expand-toggle');
-  const next = target.nextElementSibling;
-
-  if (expanded(target)) {
-    focusLock.on(next);
-    toggle && root.setAttribute(toggle, '');
-  } else {
-    focusLock.off(next);
-    toggle && root.removeAttribute(toggle);
   }
 };
 
@@ -62,26 +62,21 @@ for (const target of targets) {
     target.addEventListener('click', () => {
       update(target);
       target.setAttribute('aria-expanded', !expanded(target));
-      type === 'modal' && modal(target);
     });
   }
 
   if (type === 'modal') {
-    const close = () => {
-      update(target);
-      target.setAttribute('aria-expanded', false);
-      modal(target);
-    };
-
     document.addEventListener('click', (e) => {
       if (expanded(target) && !target.contains(e.target) && !next.contains(e.target)) {
-        close();
+        update(target);
+        target.setAttribute('aria-expanded', false);
       }
     });
 
     document.addEventListener('keydown', (e) => {
       if (expanded(target) && e.key === 'Escape') {
-        close();
+        update(target);
+        target.setAttribute('aria-expanded', false);
       }
     });
   }
