@@ -29,18 +29,12 @@ const modal = (target) => {
   const toggle = target.getAttribute('data-expand-toggle');
   const next = target.nextElementSibling;
 
-  if (toggle) {
-    if (expanded(target)) {
-      root.setAttribute(toggle, '');
-    } else {
-      root.removeAttribute(toggle);
-    }
-  }
-
   if (expanded(target)) {
     focusLock.on(next);
+    toggle && root.setAttribute(toggle, '');
   } else {
     focusLock.off(next);
+    toggle && root.removeAttribute(toggle);
   }
 };
 
@@ -49,9 +43,7 @@ for (const target of targets) {
   const next = target.nextElementSibling;
   const height = next.hasAttribute('data-expand-height');
 
-  if (!target.hasAttribute('aria-expanded')) {
-    target.setAttribute('aria-expanded', false);
-  }
+  !target.hasAttribute('aria-expanded') && target.setAttribute('aria-expanded', false);
 
   if (type === 'tab') {
     const container = target.closest('[data-expand-tabs]');
@@ -70,10 +62,7 @@ for (const target of targets) {
     target.addEventListener('click', () => {
       update(target);
       target.setAttribute('aria-expanded', !expanded(target));
-
-      if (type === 'modal') {
-        modal(target);
-      }
+      type === 'modal' && modal(target);
     });
   }
 
