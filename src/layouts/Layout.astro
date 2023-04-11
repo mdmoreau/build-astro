@@ -1,11 +1,11 @@
 ---
 import '@styles/global.css';
 
+await Astro.glob('../components/*.astro');
+
 interface Props {
   title: string;
 }
-
-await Astro.glob('../components/*.astro');
 
 const { title } = Astro.props;
 ---
