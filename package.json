@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^1.0.3",
-    "astro": "^2.1.7",
-    "postcss-preset-env": "^8.1.0"
+    "astro": "^2.2.1",
+    "postcss-preset-env": "^8.3.1"
   }
 }
