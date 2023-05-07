@@ -5,6 +5,9 @@
 }
 
 :focus {
+  outline: 0.25rem dashed;
+  outline-offset: 0.25rem;
+
   &:not(:focus-visible) {
     outline: 0;
   }
