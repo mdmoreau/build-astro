@@ -1,13 +1,5 @@
-.clear {
-  &::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-}
-
 .screen-reader-text {
-  &:not(:focus, :active) {
+  &:not(:active, :focus, :focus-within) {
     position: absolute;
     width: 1px;
     height: 1px;

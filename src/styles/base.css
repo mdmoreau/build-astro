@@ -5,7 +5,7 @@
 }
 
 :focus {
-  outline: 0.25rem dashed;
+  outline: 0.25rem dashed var(--outline, currentcolor);
   outline-offset: 0.25rem;
 
   &:not(:focus-visible) {
@@ -24,6 +24,7 @@ video {
 
 iframe,
 video {
+  width: 100%;
   aspect-ratio: 16 / 9;
 }
 
