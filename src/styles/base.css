@@ -29,13 +29,10 @@ video {
 }
 
 blockquote,
-figure {
-  margin-inline: 0;
-}
-
 fieldset,
+figure,
 legend {
-  margin: 0;
+  margin-inline: 0;
   padding: 0;
   border: 0;
 }
@@ -60,4 +57,8 @@ button,
 
 [type="search"] {
   appearance: none;
+}
+
+::placeholder {
+  opacity: 1;
 }
