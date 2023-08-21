@@ -13,7 +13,7 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
-    "astro": "^2.6.1",
-    "postcss-preset-env": "^8.4.2"
+    "astro": "^2.10.12",
+    "postcss-preset-env": "^9.1.1"
   }
 }
