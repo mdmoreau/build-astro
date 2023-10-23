@@ -1,16 +1,13 @@
-@import "sanitize.css";
-
-:root {
-  cursor: auto;
+*,
+::before,
+::after {
+  box-sizing: border-box;
 }
 
-:focus {
-  outline: 0.25rem dashed var(--outline, currentcolor);
-  outline-offset: 0.25rem;
-
-  &:not(:focus-visible) {
-    outline: 0;
-  }
+body {
+  margin: 0;
+  text-size-adjust: none;
+  overflow-wrap: break-word;
 }
 
 iframe,
@@ -26,6 +23,15 @@ iframe,
 video {
   width: 100%;
   aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+svg {
+  fill: currentColor;
+}
+
+table {
+  border-collapse: collapse;
 }
 
 blockquote,
@@ -60,5 +66,15 @@ button,
 }
 
 ::placeholder {
+  color: inherit;
   opacity: 1;
+}
+
+:focus {
+  outline: 0.25rem dashed;
+  outline-offset: 0.25rem;
+
+  &:not(:focus-visible) {
+    outline: 0;
+  }
 }
