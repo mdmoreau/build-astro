@@ -1,9 +1,13 @@
+import path from 'path';
 import { defineConfig } from 'astro/config';
+
+const assetsDir = 'assets';
 
 // https://astro.build/config
 export default defineConfig({
   build: {
     format: 'file',
+    assets: assetsDir,
   },
   vite: {
     build: {
@@ -11,8 +15,8 @@ export default defineConfig({
       cssCodeSplit: false,
       rollupOptions: {
         output: {
-          entryFileNames: 'assets/script.js',
-          assetFileNames: 'assets/[name][extname]',
+          entryFileNames: path.join(assetsDir, 'script.js'),
+          assetFileNames: path.join(assetsDir, '[name][extname]'),
         }
       }
     }
