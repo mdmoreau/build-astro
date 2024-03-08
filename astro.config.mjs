@@ -18,6 +18,9 @@ export default defineConfig({
           assetFileNames: 'assets/[name][extname]',
         }
       }
+    },
+    css: {
+      transformer: 'lightningcss',
     }
   }
 });
