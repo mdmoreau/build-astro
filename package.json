@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "build-wp": "astro build --base /wp-content/themes/build-wp/",
     "preview": "astro preview",
     "astro": "astro"
   },

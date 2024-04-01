@@ -4,7 +4,7 @@ interface Props {
 }
 
 const { src } = Astro.props;
-const svg = await import(`../images/${src}.svg?raw`);
+const svg = await import(`../../public/assets/${src}.svg?raw`);
 ---
 
 <Fragment set:html={svg.default} />
